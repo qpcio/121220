@@ -6,28 +6,26 @@ import java.util.List;
 
 public class Movie {
     String title;
-    Director director;
+    //Director director;
     LocalDate premierDate;
-    List<Actor> actorList = new ArrayList<>();
+    //List<Actor> actorList = new ArrayList<>();
     MovieType movieType;
+    List<Staff> staffList = new ArrayList<>();
 
-    public Movie(String title, Director director,
-                 LocalDate premierDate, List<Actor> actorList, MovieType movieType) {
+    public Movie(String title, LocalDate premierDate,  List<Staff> staffList, MovieType movieType) {
         this.title = title;
-        this.director = director;
         this.premierDate = premierDate;
-        this.actorList = actorList;
         this.movieType = movieType;
+        this.staffList = staffList;
     }
 
     @Override
     public String toString() {
         return "Movie{" +
                 "title='" + title + '\'' +
-                ", director=" + director +
                 ", premierDate=" + premierDate +
-                ", actorList=" + actorList +
                 ", movieType=" + movieType +
+                ", staffList=" + staffList +
                 '}';
     }
 
@@ -39,14 +37,6 @@ public class Movie {
         this.title = title;
     }
 
-    public Director getDirector() {
-        return director;
-    }
-
-    public void setDirector(Director director) {
-        this.director = director;
-    }
-
     public LocalDate getPremierDate() {
         return premierDate;
     }
@@ -55,19 +45,19 @@ public class Movie {
         this.premierDate = premierDate;
     }
 
-    public List<Actor> getActorList() {
-        return actorList;
-    }
-
-    public void setActorList(List<Actor> actorList) {
-        this.actorList = actorList;
-    }
-
     public MovieType getMovieType() {
         return movieType;
     }
 
     public void setMovieType(MovieType movieType) {
         this.movieType = movieType;
+    }
+
+    public List<Staff> getStaffList() {
+        return staffList;
+    }
+
+    public void setStaffList(List<Staff> staffList) {
+        this.staffList = staffList;
     }
 }

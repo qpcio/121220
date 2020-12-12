@@ -5,8 +5,9 @@ import java.util.*;
 
 public class MovieDB {
     static List<Movie> movieList = new ArrayList<>();
-    static List<Director> directorsList = new ArrayList<>();
-    static List<Actor> actorList = new ArrayList<>();
+    static List<Staff> staffList = new ArrayList<>();
+    //static List<Director> directorsList = new ArrayList<>();
+    //static List<Actor> actorList = new ArrayList<>();
 
     static void menuSelection() {
         Scanner scanner = new Scanner(System.in);
@@ -45,22 +46,22 @@ public class MovieDB {
     }
 
     static void dataPreparation() {
-        Director stevenSpilberg = new Director("Steven", "Spielberg", 2000);
-        Director jamesCameron = new Director("James", "Cameron", 3000);
+        Staff stevenSpilberg = new Director("Steven", "Spielberg", 2000);
+        Staff jamesCameron = new Director("James", "Cameron", 3000);
 
-        Actor tomCruiz = new Actor("Tom", "Cruiz", 1000);
-        Actor juliaRoberts = new Actor("Julia", "Roberts", 1100);
-        Actor stevenSigal = new Actor("Steven", "Sigal", 1200);
+        Staff tomCruiz = new Actor("Tom", "Cruiz", 1000);
+        Staff juliaRoberts = new Actor("Julia", "Roberts", 1100);
+        Staff stevenSigal = new Actor("Steven", "Sigal", 1200);
 
-        Movie titanic = new Movie("Titanic", stevenSpilberg,
-                LocalDate.of(2020, 12, 1), Arrays.asList(tomCruiz, juliaRoberts), MovieType.action);
-        Movie rambo = new Movie("Rambo", jamesCameron,
-                LocalDate.of(2018, 12, 1), Arrays.asList(tomCruiz, stevenSigal), MovieType.horror);
+        Movie titanic = new Movie("Titanic",
+                LocalDate.of(2020, 12, 1), Arrays.asList(tomCruiz, juliaRoberts, stevenSpilberg), MovieType.action);
+        Movie rambo = new Movie("Rambo",
+                LocalDate.of(2018, 12, 1), Arrays.asList(tomCruiz, stevenSigal, jamesCameron), MovieType.horror);
 //        movieList.add(titanic);
 //        movieList.add(rambo);
         Collections.addAll(movieList, titanic, rambo);
-        Collections.addAll(actorList, tomCruiz, juliaRoberts, stevenSigal);
-        Collections.addAll(directorsList, stevenSpilberg, jamesCameron);
+        Collections.addAll(staffList, tomCruiz, juliaRoberts, stevenSigal, stevenSpilberg, jamesCameron);
+        //Collections.addAll(directorsList, stevenSpilberg, jamesCameron);
 
     }
 
@@ -83,11 +84,15 @@ public class MovieDB {
         String firstOrLastName = scanner.nextLine();
 
         for (Movie movie : movieList) {
-            for (Actor actor : movie.getActorList()) {
-                if (actor.getFirstName().equals(firstOrLastName)) {
-                    System.out.println(movie.getTitle());
-                } else if (actor.getLastName().equals(firstOrLastName)) {
-                    System.out.println(movie.getTitle());
+            for (Staff staff : movie.getStaffList()) {
+                if (staff.getFirstName().equals(firstOrLastName)) {
+                    if (staff instanceof Actor) {
+                        System.out.println(movie.getTitle());
+                    }
+                } else if (staff.getLastName().equals(firstOrLastName)) {
+                    if (staff instanceof Actor) {
+                        System.out.println(movie.getTitle());
+                    }
                 }
             }
         }
@@ -101,10 +106,8 @@ public class MovieDB {
 
         for (Movie movie : movieList) {
             if (movieName.equals(movie.getTitle())) {
-                movieBudget = movieBudget + movie.getDirector().getPayment();
-
-                for (Actor actor : movie.getActorList()) {
-                    movieBudget = movieBudget + actor.getPayment();
+                for (Staff staff : movie.getStaffList()) {
+                    movieBudget = movieBudget + staff.getPayment();
                 }
                 System.out.println(movieBudget);
             }
@@ -137,7 +140,7 @@ public class MovieDB {
                 "    horror,\n" +
                 "    action");
         String type = scanner.nextLine();
-        System.out.println("Podaj imię lub nazwisko reżytsera");
+        System.out.println("Podaj imię lub nazwisko reżysera");
         String directorName = scanner.nextLine();
         System.out.println("Podaj datę premiery w formacie RRRR-MM-DD");
         LocalDate premiereDate = LocalDate.parse(scanner.nextLine());
@@ -145,28 +148,22 @@ public class MovieDB {
         int actorsCount = scanner.nextInt();
         scanner.nextLine();
 
-        Director director = null;
-        List<Actor> newMovieActorList = new ArrayList<>();
-        for (Director director1 : directorsList) {
-            if (director1.getFirstName().equals(directorName)) {
-                director = director1;
-            } else if (director1.getLastName().equals(directorName)) {
-                director = director1;
-            }
-        }
+
+        List<Staff> newMovieStaffList = new ArrayList<>();
+
 
         for (int i = 1; i <= actorsCount; i++) {
             System.out.println("Podaj imię lub nazwisko " + i + " aktora:");
             String firstOrLastName = scanner.nextLine();
-            for (Actor actor : actorList) {
+            for (Staff actor : staffList) {
                 if (actor.firstName.equals(firstOrLastName)) {
-                    newMovieActorList.add(actor);
+                    newMovieStaffList.add(actor);
                 } else if (actor.getLastName().equals(firstOrLastName)) {
-                    newMovieActorList.add(actor);
+                    newMovieStaffList.add(actor);
                 }
             }
         }
-        Movie movie = new Movie(title, director, premiereDate, newMovieActorList, MovieType.valueOf(type));
+        Movie movie = new Movie(title, premiereDate, newMovieStaffList, MovieType.valueOf(type));
         MovieDB.movieList.add(movie);
     }
 

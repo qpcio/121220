@@ -1,6 +1,6 @@
 package MovieDB;
 
-public class Staff {
+public abstract class Staff {
     String firstName;
     String lastName;
     double payment;
@@ -40,7 +40,6 @@ public class Staff {
         return payment;
     }
 
-    public void setPayment(double payment) {
-        this.payment = payment;
-    }
+    public abstract void setPayment(double payment);
+
 }
