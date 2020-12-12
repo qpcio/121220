@@ -30,6 +30,7 @@ public class MovieDB {
                 case 3:
                     break;
                 case 4:
+                    checkMoviesForActor(movieList);
                     break;
                 case 5:
                     break;
@@ -68,5 +69,25 @@ public class MovieDB {
                 System.out.println(toString);
             }
         }
+    }
+
+    private static void checkMoviesForActor(List<Movie> movieList) {
+        System.out.println("Podaj imię lub nazwisko aktora");
+        Scanner scanner = new Scanner(System.in);
+        String firstOrLastName = scanner.nextLine();
+
+        for (Movie movie : movieList){
+            for (Actor actor : movie.getActorList()){
+                if (actor.getFirstName().equals(firstOrLastName)){
+                    System.out.println(movie.getTitle());
+                } else if (actor.getLastName().equals(firstOrLastName)){
+                    System.out.println(movie.getTitle());
+                }
+            }
+        }
+    }
+
+    private static void checkMovieBudget(List<Movie> movieList) {
+        System.out.println("");
     }
 }
