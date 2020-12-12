@@ -10,7 +10,7 @@ public class Movie {
     LocalDate premierDate;
     //List<Actor> actorList = new ArrayList<>();
     MovieType movieType;
-    List<Staff> staffList = new ArrayList<>();
+    List<Staff> staffList;
 
     public Movie(String title, LocalDate premierDate,  List<Staff> staffList, MovieType movieType) {
         this.title = title;

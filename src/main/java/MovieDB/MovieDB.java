@@ -9,6 +9,9 @@ public class MovieDB {
     //static List<Director> directorsList = new ArrayList<>();
     //static List<Actor> actorList = new ArrayList<>();
 
+    //Spróbujcie dodać obsługę błednych danych
+    //Dla chętnych wczytywanie danych testowych z CSV
+
     static void menuSelection() {
         Scanner scanner = new Scanner(System.in);
         int counter = 0;
@@ -141,7 +144,7 @@ public class MovieDB {
                 "    action");
         String type = scanner.nextLine();
         System.out.println("Podaj imię lub nazwisko reżysera");
-        String directorName = scanner.nextLine();
+        String directorName = scanner.nextLine(); //dodać obsługę Rezysera
         System.out.println("Podaj datę premiery w formacie RRRR-MM-DD");
         LocalDate premiereDate = LocalDate.parse(scanner.nextLine());
         System.out.println("Podaj proszę ilu będzie aktorów w filmie");
