@@ -28,6 +28,7 @@ public class MovieDB {
                     findMovieByTitle(movieList);
                     break;
                 case 3:
+                    searchMovieFromRange(movieList);
                     break;
                 case 4:
                     checkMoviesForActor(movieList);
@@ -107,4 +108,21 @@ public class MovieDB {
         }
 
     }
+
+    private static void searchMovieFromRange(List<Movie> movieList) {
+        System.out.println("Podaj datę od w formacie RRRR-MM-DD");
+        Scanner scanner = new Scanner(System.in);
+        LocalDate start = LocalDate.parse(scanner.nextLine());
+        System.out.println("Podaj datedo w formacie RRRR-MM-DD");
+        LocalDate end = LocalDate.parse(scanner.nextLine());
+
+        for (Movie movie : movieList) {
+            if (movie.getPremierDate().isAfter(start) && movie.getPremierDate().isBefore(end)
+                    || movie.getPremierDate().equals(start) || movie.getPremierDate().equals(end) ){
+                System.out.println(movie.getTitle());
+            }
+        }
+
+    }
+
 }
