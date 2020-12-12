@@ -33,6 +33,7 @@ public class MovieDB {
                     checkMoviesForActor(movieList);
                     break;
                 case 5:
+                    checkMovieBudget(movieList);
                     break;
                 default:
                     System.out.println("Zły wybór");
@@ -76,11 +77,11 @@ public class MovieDB {
         Scanner scanner = new Scanner(System.in);
         String firstOrLastName = scanner.nextLine();
 
-        for (Movie movie : movieList){
-            for (Actor actor : movie.getActorList()){
-                if (actor.getFirstName().equals(firstOrLastName)){
+        for (Movie movie : movieList) {
+            for (Actor actor : movie.getActorList()) {
+                if (actor.getFirstName().equals(firstOrLastName)) {
                     System.out.println(movie.getTitle());
-                } else if (actor.getLastName().equals(firstOrLastName)){
+                } else if (actor.getLastName().equals(firstOrLastName)) {
                     System.out.println(movie.getTitle());
                 }
             }
@@ -88,6 +89,22 @@ public class MovieDB {
     }
 
     private static void checkMovieBudget(List<Movie> movieList) {
-        System.out.println("");
+        System.out.println("Podaj nazwę filmu dla którego sprawdzamy budżet");
+        Scanner scanner = new Scanner(System.in);
+        String movieName = scanner.nextLine();
+        double movieBudget = 0;
+
+        for (Movie movie : movieList) {
+            if (movieName.equals(movie.getTitle())) {
+                movieBudget = movieBudget + movie.getDirector().getPayment();
+
+                for (Actor actor : movie.getActorList()) {
+                    movieBudget = movieBudget + actor.getPayment();
+                }
+                System.out.println(movieBudget);
+            }
+
+        }
+
     }
 }
