@@ -13,4 +13,5 @@
 #### 5. [Others](./exercises/exercises_Others.md)
 ### Technikalia
 #### 1. [Importy](./exercises/Imports.md)
-#### 2. Codeshare - 
+#### 2. Codeshare - https://codeshare.io/GkVj1p
+#### 3. Sklep - http://5.196.7.235/
