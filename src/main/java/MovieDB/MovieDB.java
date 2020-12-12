@@ -1,13 +1,12 @@
 package MovieDB;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class MovieDB {
     static List<Movie> movieList = new ArrayList<>();
+    static List<Director> directorsList = new ArrayList<>();
+    static List<Actor> actorList = new ArrayList<>();
 
     static void menuSelection() {
         Scanner scanner = new Scanner(System.in);
@@ -23,6 +22,7 @@ public class MovieDB {
             int selectMenu = scanner.nextInt();
             switch (selectMenu) {
                 case 1:
+                    addNewMovie();
                     break;
                 case 2:
                     findMovieByTitle(movieList);
@@ -45,19 +45,23 @@ public class MovieDB {
     }
 
     static void dataPreparation() {
-        Director stevenSpilberg = new Director("Steven", "Spilberg", 2000);
+        Director stevenSpilberg = new Director("Steven", "Spielberg", 2000);
         Director jamesCameron = new Director("James", "Cameron", 3000);
 
         Actor tomCruiz = new Actor("Tom", "Cruiz", 1000);
-        Actor juliaRoberts = new Actor("Juila", "Roberts", 1100);
+        Actor juliaRoberts = new Actor("Julia", "Roberts", 1100);
         Actor stevenSigal = new Actor("Steven", "Sigal", 1200);
 
         Movie titanic = new Movie("Titanic", stevenSpilberg,
                 LocalDate.of(2020, 12, 1), Arrays.asList(tomCruiz, juliaRoberts), MovieType.action);
         Movie rambo = new Movie("Rambo", jamesCameron,
                 LocalDate.of(2018, 12, 1), Arrays.asList(tomCruiz, stevenSigal), MovieType.horror);
-        movieList.add(titanic);
-        movieList.add(rambo);
+//        movieList.add(titanic);
+//        movieList.add(rambo);
+        Collections.addAll(movieList, titanic, rambo);
+        Collections.addAll(actorList, tomCruiz, juliaRoberts, stevenSigal);
+        Collections.addAll(directorsList, stevenSpilberg, jamesCameron);
+
     }
 
     private static void findMovieByTitle(List<Movie> movieList) {
@@ -118,11 +122,52 @@ public class MovieDB {
 
         for (Movie movie : movieList) {
             if (movie.getPremierDate().isAfter(start) && movie.getPremierDate().isBefore(end)
-                    || movie.getPremierDate().equals(start) || movie.getPremierDate().equals(end) ){
+                    || movie.getPremierDate().equals(start) || movie.getPremierDate().equals(end)) {
                 System.out.println(movie.getTitle());
             }
         }
 
+    }
+
+    private static void addNewMovie() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj tytuł nowego filmu");
+        String title = scanner.nextLine();
+        System.out.println("Podaj typ z: commedy,\n" +
+                "    horror,\n" +
+                "    action");
+        String type = scanner.nextLine();
+        System.out.println("Podaj imię lub nazwisko reżytsera");
+        String directorName = scanner.nextLine();
+        System.out.println("Podaj datę premiery w formacie RRRR-MM-DD");
+        LocalDate premiereDate = LocalDate.parse(scanner.nextLine());
+        System.out.println("Podaj proszę ilu będzie aktorów w filmie");
+        int actorsCount = scanner.nextInt();
+        scanner.nextLine();
+
+        Director director = null;
+        List<Actor> newMovieActorList = new ArrayList<>();
+        for (Director director1 : directorsList) {
+            if (director1.getFirstName().equals(directorName)) {
+                director = director1;
+            } else if (director1.getLastName().equals(directorName)) {
+                director = director1;
+            }
+        }
+
+        for (int i = 1; i <= actorsCount; i++) {
+            System.out.println("Podaj imię lub nazwisko " + i + " aktora:");
+            String firstOrLastName = scanner.nextLine();
+            for (Actor actor : actorList) {
+                if (actor.firstName.equals(firstOrLastName)) {
+                    newMovieActorList.add(actor);
+                } else if (actor.getLastName().equals(firstOrLastName)) {
+                    newMovieActorList.add(actor);
+                }
+            }
+        }
+        Movie movie = new Movie(title, director, premiereDate, newMovieActorList, MovieType.valueOf(type));
+        MovieDB.movieList.add(movie);
     }
 
 }
