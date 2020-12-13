@@ -4,21 +4,25 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import Day4.Mountain;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class TableTest extends TestBase{
+public class TableTest extends TestBase {
 
     @BeforeMethod
-    public void openTable(){
+    public void openTable() {
         driver.get("https://seleniumui.moderntester.pl/table.php");
     }
 
     @Test
-    public void tableTest(){
+    public void tableTest() {
         List<WebElement> mountainRows = driver.findElements(By.cssSelector("tbody>tr"));
-        List<Mountain> mountains
+        List<Mountain> mountains = new ArrayList<>();
+
+        for (WebElement element : mountainRows) {
+            mountains.add(new Mountain(element));
+        }
 
 
 
