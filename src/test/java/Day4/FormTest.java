@@ -8,9 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.util.List;
 import java.util.Random;
 
@@ -68,10 +70,20 @@ WebDriver driver;
             commandsSelect.selectByIndex(i);
         }
 
+        //FileUpload
+        WebElement fileInput = driver.findElement(By.id("chooseFile"));
+        File file = new File("src/main/resources/emptyFile.txt");
+        fileInput.sendKeys(file.getAbsolutePath());
 
         //AdditionalInformation
         WebElement additionalInfo = driver.findElement(By.cssSelector("#additionalInformations"));
         additionalInfo.sendKeys("Test");
+
+        WebElement signIn = driver.findElement(By.cssSelector("button[type='submit']"));
+        signIn.click();
+
+        String validationMessage = driver.findElement(By.id("validator-message")).getText();
+        Assert.assertEquals(validationMessage,"Form send with success");
 
     }
 
