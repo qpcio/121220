@@ -10,29 +10,26 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.File;
 import java.util.List;
 import java.util.Random;
 
-public class FormTest {
+public class FormTest extends TestBase{
 WebDriver driver;
+
+
 
     @Test
     public void formTest() {
-        WebDriverManager.chromedriver().setup();
-        //System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized");
-        options.addArguments("disable-extensions");
-        driver = new ChromeDriver(options);
-        driver.manage().window().setPosition(new Point(3440,0));
         driver.get("https://seleniumui.moderntester.pl/form.php");
 
 
-        WebElement firstName = driver.findElement(By.cssSelector("#inputFirstName3"));
-        firstName.sendKeys("Jan");
+//        WebElement firstName = driver.findElement(By.cssSelector("#inputFirstName3"));
+//        firstName.sendKeys("Jan");
+        driver.findElement(By.cssSelector("#inputFirstName3")).sendKeys("Jan");
 
         WebElement lastName = driver.findElement(By.cssSelector("input#inputLastName3"));
         lastName.sendKeys("Kowalski");
@@ -87,18 +84,5 @@ WebDriver driver;
 
     }
 
-    @AfterMethod
-    public void  tearDown() {driver.quit();}
 
-    public WebElement getRandomElement(List<WebElement> elemnts){
-        Random rnd = new Random();
-        int randomNumber = rnd.nextInt(elemnts.size() - 1);
-        return elemnts.get(randomNumber);
-    }
-
-    public int getRandomNumber(int max){
-        Random rnd = new Random();
-        int randomNumber = rnd.nextInt(max)+1;
-        return randomNumber;
-    }
 }
