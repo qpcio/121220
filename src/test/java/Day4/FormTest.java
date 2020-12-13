@@ -10,6 +10,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import java.util.List;
+import java.util.Random;
+
 public class FormTest {
 WebDriver driver;
 
@@ -27,8 +30,33 @@ WebDriver driver;
 
         WebElement firstName = driver.findElement(By.cssSelector("#inputFirstName3"));
         firstName.sendKeys("Jan");
+
+        WebElement lastName = driver.findElement(By.cssSelector("input#inputLastName3"));
+        lastName.sendKeys("Kowalski");
+
+        WebElement email = driver.findElement(By.cssSelector("input#inputEmail3"));
+        email.sendKeys("jan@kowalski.pl");
+
+        WebElement male = driver.findElement(By.cssSelector("input[value='male']"));
+        male.click();
+
+        WebElement age = driver.findElement(By.cssSelector("#inputAge3"));
+        age.sendKeys("15");
+
+        List<WebElement> yearsOfExpirience = driver.findElements(By.name("gridRadiosExperience"));
+        getRandomElement(yearsOfExpirience).click();
+
+        WebElement additionalInfo = driver.findElement(By.cssSelector("#additionalInformations"));
+        additionalInfo.sendKeys("Test");
+
     }
 
     @AfterMethod
     public void  tearDown() {driver.quit();}
+
+    public WebElement getRandomElement(List<WebElement> elemnts){
+        Random rnd = new Random();
+        int randomNumber = rnd.nextInt(elemnts.size() - 1);
+        return elemnts.get(randomNumber);
+    }
 }
