@@ -24,6 +24,13 @@ public class TableTest extends TestBase {
             mountains.add(new Mountain(element));
         }
 
+        for (Mountain mountain : mountains){
+            if (mountain.getHeight() > 4500 && mountain.getState().contains("Switzerland")){
+                System.out.println(mountain.toString());
+            }
+        }
+
+        //Dopisać asercję
 
 
     }
