@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 public abstract class BasePO {
     protected WebDriver driver;
     protected String ownURL;
-    WebDriverWait wait;
+    protected WebDriverWait wait;
 
     public void openMe() {
         driver.get(ownURL);

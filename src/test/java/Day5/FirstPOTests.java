@@ -32,4 +32,13 @@ public class FirstPOTests extends TestBase {
         progressBarPO.openMe();
         Assert.assertTrue(progressBarPO.progressBarIsComplete());
     }
+
+    @Test
+    public void testDelayedAlert(){
+        AlertPO alertPO = new AlertPO(driver);
+        alertPO.openMe();
+        alertPO.clickDelayedAlertButton();
+        alertPO.waitForAlertAndAccept();
+        Assert.assertEquals(alertPO.getDelayedAlertLabelText(),"OK button pressed");
+    }
 }
