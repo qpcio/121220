@@ -16,6 +16,7 @@ public class AssertionTest {
         String expectedText = "asd";
         Assert.assertEquals("asd",expectedText);
         Assert.assertTrue(true);
+        
 
         String content = new Scanner(new File("src/main/resources/secret2.txt")).useDelimiter("\\Z").next();
         System.out.println(content);

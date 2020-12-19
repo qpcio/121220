@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Random;
 
 public class TestBase {
-    WebDriver driver;
+    protected WebDriver driver;
 
 
     @BeforeMethod
@@ -24,7 +24,7 @@ public class TestBase {
         options.addArguments("start-maximized");
         options.addArguments("disable-extensions");
         driver = new ChromeDriver(options);
-        driver.manage().window().setPosition(new Point(3440,0));
+       // driver.manage().window().setPosition(new Point(3440,0));
     }
 
     @AfterMethod
@@ -44,7 +44,7 @@ public class TestBase {
         return randomNumber;
     }
 
-    void veryBadSleep() {
+    protected void veryBadSleep() {
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
