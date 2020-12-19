@@ -10,7 +10,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Random;
 
-public class FormPO extends BasePO{
+public class FormPO extends BasePO {
 
     //String ownURL = "https://seleniumui.moderntester.pl/form.php";
 
@@ -53,35 +53,35 @@ public class FormPO extends BasePO{
     @FindBy(id = "inputAge3")
     private WebElement ageTextBox;
 
-    public void selectRandomExperience(){
+    public void selectRandomExperience() {
         getRandomElement(yearsOfExperience).click();
     }
 
-    public void fillAge(int age){
+    public void fillAge(int age) {
         ageTextBox.sendKeys(Integer.toString(age));
     }
 
-    public String getValidatorMessageText(){
+    public String getValidatorMessageText() {
         return validatorMessage.getText();
     }
 
 
-    public void submit(){
+    public void submit() {
         submitButton.click();
     }
 
 
-    public void fillAdditionalInformation(String text){
+    public void fillAdditionalInformation(String text) {
         additionalInformationTextBox.sendKeys(text);
     }
 
 
-    public void fillFileInput(){
+    public void fillFileInput() {
         File file = new File("src/main/resources/emptyFile.txt");
         fileInput.sendKeys(file.getAbsolutePath());
     }
 
-    public void selectRandomCommand(){
+    public void selectRandomCommand() {
         Select commandSelect = new Select(commands);
         List<WebElement> commandsOptions = commandSelect.getOptions();
         int howManyOption = getRandomNumber(commandsOptions.size());
@@ -91,7 +91,7 @@ public class FormPO extends BasePO{
     }
 
 
-    public void selectRandomContinent(){
+    public void selectRandomContinent() {
         Select continents = new Select(selectContinents);
         List<WebElement> continentsOptions = continents.getOptions();
         continentsOptions.remove(0);
@@ -99,20 +99,20 @@ public class FormPO extends BasePO{
         continents.selectByVisibleText(randomOption.getText());
     }
 
-    public void selectManualTester(){
+    public void selectManualTester() {
         manualTesterGrid.click();
     }
 
-    public void selectMale(){
+    public void selectMale() {
         maleRadioButton.click();
     }
 
-    public void fillName(String firstname, String lastName){
+    public void fillName(String firstname, String lastName) {
         inputFirstName.sendKeys(firstname);
         inputLastName.sendKeys(lastName);
     }
 
-    public void fillEmail(String email){
+    public void fillEmail(String email) {
         inputEmail.sendKeys(email);
     }
 

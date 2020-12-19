@@ -17,30 +17,31 @@ public class TestBase {
 
 
     @BeforeMethod
-    public void setup(){
+    public void setup() {
         WebDriverManager.chromedriver().setup();
         //System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         options.addArguments("disable-extensions");
         driver = new ChromeDriver(options);
-       // driver.manage().window().setPosition(new Point(3440,0));
+        // driver.manage().window().setPosition(new Point(3440,0));
     }
 
     @AfterMethod
-    public void  tearDown() {driver.quit();}
+    public void tearDown() {
+        driver.quit();
+    }
 
 
-
-    public WebElement getRandomElement(List<WebElement> elemnts){
+    public WebElement getRandomElement(List<WebElement> elemnts) {
         Random rnd = new Random();
         int randomNumber = rnd.nextInt(elemnts.size() - 1);
         return elemnts.get(randomNumber);
     }
 
-    public int getRandomNumber(int max){
+    public int getRandomNumber(int max) {
         Random rnd = new Random();
-        int randomNumber = rnd.nextInt(max)+1;
+        int randomNumber = rnd.nextInt(max) + 1;
         return randomNumber;
     }
 
