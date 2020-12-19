@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class FormPO {
     WebDriver driver;
     String ownURL = "https://seleniumui.moderntester.pl/form.php";
@@ -18,6 +20,8 @@ public class FormPO {
     @FindBy(css = "#inputEmail3")
     private WebElement inputEmail;
 
+    @FindBy(name = "gridRadiosExperience")
+    private List<WebElement> yearsOfExperience;
 
 
     public void fillName(String firstname, String lastName){
