@@ -1,6 +1,7 @@
 package Day5.MyStore;
 
 import Day5.BasePO;
+import org.jsoup.select.Evaluator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,6 +30,13 @@ public class CreateAccountPO extends BasePO {
 
     @FindBy(css = ".form-control-submit")
     private WebElement submitButton;
+
+    @FindBy(css = ".alert-danger")
+    private WebElement emailAlreadyInUseAlert;
+
+    public String getAlertText(){
+        return emailAlreadyInUseAlert.getText();
+    }
 
 
     public void fillFormAndSubmit(boolean male,

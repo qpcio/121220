@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 public class UserCreation extends TestBase {
 
     @Test
-    public void testUserRegistration(){
+    public void successfulUserRegistrationTest(){
         //given
         String firstName = "Bogdan";
         String lastname = "Wiadro";
@@ -35,5 +35,28 @@ public class UserCreation extends TestBase {
         Assert.assertEquals(menuPO.getUserName(),firstName+" "+lastname);
     }
 
+    @Test
+    public void userRegistrationShouldFailWhenSameEmailIsUsedMoreThanOnceTest(){
+        //given
+        String firstName = "Bogdan";
+        String lastname = "Wiadro";
+        String email = "test@test.com";
+        HomepagePO homepagePO = new HomepagePO(driver);
+        homepagePO.openMe();
+        MenuPO menuPO = new MenuPO(driver);
+        //when
+        menuPO.clickSignInOutButton();
+        LoginPO loginPO = new LoginPO(driver);
+        loginPO.clickCreateAccountLink();
+        CreateAccountPO createAccountPO = new CreateAccountPO(driver);
+        createAccountPO.fillFormAndSubmit(true,
+                firstName,
+                lastname,
+                email,
+                "AAAABBBB",
+                "05/08/2000");
+        //then
+        Assert.assertTrue(createAccountPO.getAlertText().contains("already used"));
+    }
 
 }
