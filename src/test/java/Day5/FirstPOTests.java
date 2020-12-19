@@ -10,6 +10,11 @@ public class FirstPOTests extends TestBase {
         formPO.openMe();
         formPO.fillName("Bogdan","Wiadro");
         formPO.fillEmail("test@test.com");
+        //tu nowe metody az do konca
+
+
+        //a tu asercja - jak?! 
+
 
     }
 }
