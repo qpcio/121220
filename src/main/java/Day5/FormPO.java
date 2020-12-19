@@ -10,9 +10,9 @@ import java.io.File;
 import java.util.List;
 import java.util.Random;
 
-public class FormPO {
-    WebDriver driver;
-    String ownURL = "https://seleniumui.moderntester.pl/form.php";
+public class FormPO extends BasePO{
+
+    //String ownURL = "https://seleniumui.moderntester.pl/form.php";
 
     @FindBy(id = "inputFirstName3")
     private WebElement inputFirstName;
@@ -107,7 +107,6 @@ public class FormPO {
         maleRadioButton.click();
     }
 
-
     public void fillName(String firstname, String lastName){
         inputFirstName.sendKeys(firstname);
         inputLastName.sendKeys(lastName);
@@ -117,37 +116,8 @@ public class FormPO {
         inputEmail.sendKeys(email);
     }
 
-    public void openMe() {
-        driver.get(ownURL);
-    }
-
-
-
-
     public FormPO(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver,this);
+        super(driver);
+        ownURL = "https://seleniumui.moderntester.pl/form.php";
     }
-
-    private WebElement getRandomElement(List<WebElement> elemnts){
-        Random rnd = new Random();
-        int randomNumber = rnd.nextInt(elemnts.size() - 1);
-        return elemnts.get(randomNumber);
-    }
-
-    private int getRandomNumber(int max){
-        Random rnd = new Random();
-        int randomNumber = rnd.nextInt(max)+1;
-        return randomNumber;
-    }
-
-    private void veryBadSleep() {
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 }
