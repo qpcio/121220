@@ -39,4 +39,12 @@ public class ShopProcessTests extends TestBase {
         Assert.assertEquals(totalQuantity,shoppingCartPO.getTotalNumberofItemsInTheCart());
         Assert.assertEquals(value,shoppingCartPO.getSubtotal(),0.001);
     }
+
+
+    @Test
+    public void deletingFromShoppingCartShouldCorrectlyUpdateQuantityAndValueTest(){
+        // dodajemy kilka rzeczy do koszyka
+        // idziemy do koszyka i sprawdzamy liczbe itemow i ich wartosc
+        // usuwamy jeden item (linie) i weryfikujemy wartosc i liczbe pozostalych elementow
+    }
 }
