@@ -21,8 +21,8 @@ public abstract class BasePO {
     public BasePO(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver,20);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver,10);
     }
 
     protected WebElement getRandomElement(List<WebElement> elemnts){

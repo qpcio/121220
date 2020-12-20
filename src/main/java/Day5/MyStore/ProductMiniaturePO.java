@@ -40,10 +40,10 @@ public class ProductMiniaturePO {
         return Double.valueOf(priceNumber);
     }
 
-    public void clickQuickView(){
+    public void clickQuickView() {
         Actions actions = new Actions(driver);
         actions.moveToElement(thumbnail).build().perform();
-        WebDriverWait wait = new WebDriverWait(driver,5);
+        WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.elementToBeClickable(quickView));
         quickView.click();
     }

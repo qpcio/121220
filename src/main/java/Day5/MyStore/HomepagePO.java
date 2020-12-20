@@ -29,6 +29,10 @@ public class HomepagePO extends BasePO {
         return getProductMiniatures().get(n).getProductTitle();
     }
 
+    public double getPriceOfNthMiniature(int n){
+        return getProductMiniatures().get(n).getProductPrice();
+    }
+
     //metoda do wypisywania cen z wszystkich produktow
     public void printAllPrices(){
         List<ProductMiniaturePO> allMiniatures = getProductMiniatures();
