@@ -15,8 +15,15 @@ public class ShoppingCartPO extends BasePO {
     @FindBy(css = "#cart-subtotal-products .value")
     private WebElement subtotal;
 
+    @FindBy(css = ".js-subtotal")
+    private WebElement numberOfTotalItems;
+
+    public int getTotalNumberofItemsInTheCart(){
+        return Integer.parseInt(numberOfTotalItems.getText().replace(" items",""));
+    }
+
     public double getSubtotal() {
-        return Double.valueOf(subtotal.getText().replace("$", ""));
+        return Double.valueOf(subtotal.getText().replace("$", "").replace(",",""));
     }
 
     public String getNthCartItemsName(int n) {
