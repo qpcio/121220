@@ -42,13 +42,16 @@ public class UserCreation extends TestBase {
         String lastname = "Wiadro";
         String email = "test@test.com";
         HomepagePO homepagePO = new HomepagePO(driver);
-        homepagePO.openMe();
         MenuPO menuPO = new MenuPO(driver);
-        //when
-        menuPO.clickSignInOutButton();
         LoginPO loginPO = new LoginPO(driver);
-        loginPO.clickCreateAccountLink();
         CreateAccountPO createAccountPO = new CreateAccountPO(driver);
+
+
+
+        //when
+        homepagePO.openMe();
+        menuPO.clickSignInOutButton();
+        loginPO.clickCreateAccountLink();
         createAccountPO.fillFormAndSubmit(true,
                 firstName,
                 lastname,
