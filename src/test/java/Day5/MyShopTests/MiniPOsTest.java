@@ -31,4 +31,16 @@ public class MiniPOsTest extends TestBase {
         Assert.assertEquals(name1,quickViewPO.getTitle());
 
     }
+
+    @Test
+    public void itemsInTheCartShouldHaveCorrectSummaryPrice(){
+        // random element z homepage
+        //quickview
+        // losowa liczba (1-10)
+        //dodac do koszyka
+        //przejsc do koszyka
+        //sprawdzic nazwe i sumaryczna cene w koszyku 
+    }
+
+
 }
