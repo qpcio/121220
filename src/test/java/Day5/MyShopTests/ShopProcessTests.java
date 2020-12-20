@@ -16,8 +16,9 @@ public class ShopProcessTests extends TestBase {
         MenuPO menuPO = new MenuPO(driver);
 
         homepagePO.openMe();
-        int randomNumber;
-        double price;
+
+        //podpowiedz:
+        int totalQuantity = 0;
         double Value = 0;
 
         for (int i=0;i<3;i++){
