@@ -18,22 +18,22 @@ public abstract class BasePO {
         driver.get(ownURL);
     }
 
-    public BasePO(WebDriver driver){
+    public BasePO(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver,10);
+        wait = new WebDriverWait(driver, 10);
     }
 
-    protected WebElement getRandomElement(List<WebElement> elemnts){
+    protected WebElement getRandomElement(List<WebElement> elemnts) {
         Random rnd = new Random();
         int randomNumber = rnd.nextInt(elemnts.size() - 1);
         return elemnts.get(randomNumber);
     }
 
-    protected int getRandomNumber(int max){
+    protected int getRandomNumber(int max) {
         Random rnd = new Random();
-        int randomNumber = rnd.nextInt(max)+1;
+        int randomNumber = rnd.nextInt(max) + 1;
         return randomNumber;
     }
 

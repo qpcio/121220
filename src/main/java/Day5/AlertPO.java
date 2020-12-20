@@ -30,9 +30,7 @@ public class AlertPO extends BasePO {
         wait.until(ExpectedConditions.alertIsPresent());
         driver.switchTo().alert().accept();
     }
-
-
-
+    
     public AlertPO(WebDriver driver) {
         super(driver);
         ownURL = "https://seleniumui.moderntester.pl/alerts.php";
