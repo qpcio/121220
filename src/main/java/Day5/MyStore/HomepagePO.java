@@ -16,7 +16,10 @@ public class HomepagePO extends BasePO {
 
     //metoda do wypisywania cen z wszystkich produktow
     public void printAllPrices(){
-
+        List<ProductMiniaturePO> allMiniatures = getProductMiniatures();
+        for (ProductMiniaturePO pm:allMiniatures) {
+            System.out.println(pm.getProductPrice());
+        }
     }
     
 
