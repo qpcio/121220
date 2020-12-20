@@ -42,7 +42,7 @@ public class ProductMiniaturePO {
 
     public void clickQuickView(){
         Actions actions = new Actions(driver);
-        actions.moveToElement(thumbnail);
+        actions.moveToElement(thumbnail).build().perform();
         WebDriverWait wait = new WebDriverWait(driver,5);
         wait.until(ExpectedConditions.elementToBeClickable(quickView));
         quickView.click();
