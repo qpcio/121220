@@ -15,6 +15,13 @@ public class MenuPO extends BasePO {
       @FindBy(css = ".account>span.hidden-sm-down")
       private WebElement nameOfLoggedInUser;
 
+      @FindBy(css = ".cart-preview")
+      private WebElement goToCart;
+
+      public void openCart(){
+          goToCart.click();
+      }
+
       public void clickSignInOutButton(){
           signInOut.click();
       }
